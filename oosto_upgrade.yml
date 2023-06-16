@@ -7,4 +7,4 @@
     - name: Clean up of old files
       include_role:
         name: cleanup
-      when: ansible_kernel == '4.18.0-305.25.1.el8_4.x86_64'
+      when: ansible_kernel >= '4.18.0-305.25.1.el8_4.x86_64'
