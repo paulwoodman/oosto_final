@@ -1,4 +1,12 @@
 ---
+
+- name: Remove entries from hosts file
+  lineinfile:
+    path: /etc/hosts
+    regexp: '{{ item }}'
+    line: ''
+    state: absent
+  loop: "{{ old_hosts }}"
  
 - name: Copy migration tar to server
   copy:

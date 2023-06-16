@@ -32,7 +32,7 @@
     state: absent
 
 - name: Install Satellite to server
-    yum:
+  yum:
     name: "{{ satellite_katello_rpm_url }}"
     state: present
     validate_certs: no

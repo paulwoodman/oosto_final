@@ -1,0 +1,30 @@
+---
+- name: Oosto v1 to v2 install
+  hosts: all
+  gather_facts: True
+  vars:
+     old_hosts:
+       - 192.168.0.1
+       - 192.168.0.2
+       - 192.168.0.3
+  tasks:
+
+    - name: Print the vars
+      debug:
+        var: '{{ item }}'
+      with_items: old_hosts
+
+
+    - name: Remove entries from hosts file
+      lineinfile:
+        path: /etc/hosts
+        regexp: '{{ item }}' 
+        line: ''
+        state: absent
+      loop: "{{ old_hosts }}"
+
+
+          #      with_items:
+          #        - 192.168.0.1
+          #- 192.168.0.2
+        
