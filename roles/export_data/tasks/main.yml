@@ -1,12 +1,18 @@
 ---
 
 - name: Remove entries from hosts file
-  lineinfile:
-    path: /etc/hosts
-    regexp: '{{ item }}'
-    line: ''
-    state: absent
-  loop: "{{ old_hosts }}"
+  iptables:
+    chain: INPUT
+    source: "{{ item }}"
+    jump: DROP
+  loop: "{{ drop_hosts }}"
+
+- name: Copy file srvadmin to /storage
+  copy:
+    src: /OMSA/OM-SRVADMIN.tar.gz
+    dest: /tmp
+    remote_src: yes
+  ignore_errors: True
  
 - name: Copy migration tar to server
   copy:

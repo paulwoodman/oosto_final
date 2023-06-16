@@ -16,7 +16,7 @@ dns_entries:
   - "127.0.0.1   register"
   - "192.168.185.0   ec-store-sat1.menards.net"
 
-old_hosts:
+drop_hosts:
   - 192.168.0.1
   - 192.168.0.2
   - 192.168.0.3
