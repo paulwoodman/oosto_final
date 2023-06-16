@@ -4,6 +4,16 @@
   gather_facts: True
   tasks:
 
+    - pause: 
+        prompt: Did you update the vars file in group vars?
+        echo: yes
+      register: vars_check
+
+    - name: failed as the vars file needs to be updated 
+      fail:
+        msg: Please update the main.yml in the group_vars/all folder
+      when: vars_check.user_input != "yes"      
+
     - name: Create a backup of oosto v1 data
       include_role:
         name: export_data
