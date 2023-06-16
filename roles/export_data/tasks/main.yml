@@ -1,6 +1,6 @@
 ---
 
-- name: Remove entries from hosts file
+- name: Block IP's on the server
   iptables:
     chain: INPUT
     source: "{{ item }}"

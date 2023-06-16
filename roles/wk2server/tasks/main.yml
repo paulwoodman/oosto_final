@@ -4,13 +4,6 @@
   debug:
     var: ansible_kernel
 
-- name: block ip addresses
-  iptables:
-    chain: INPUT
-    source: "{{ item }}"
-    jump: DROP
-  loop: "{{ drop_hosts }}"
-
 - name: Get client info
   command: cat /etc/redhat-release
   register: server_info
